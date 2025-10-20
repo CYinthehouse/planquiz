@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>KoreanLearnin</title>
+    <script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "tt08azyz1t"); </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        /* --- Fix A: stop top-margin collapse on the very first child --- */
+        html, body { 
+            margin: 0; 
+            padding: 0;
+            height: auto;
+            min-height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        body {
+          padding-top: 1px;
+        }
+        body > *:first-child,
+        main > *:first-child,
+        .container > *:first-child {
+          margin-top: 0 !important;
+        }
+
+        /* --- Fix B: disable scroll-snap --- */
+        html, body, main, .page, .container {
+          scroll-snap-type: none !important;
+        }
+
+        /* --- Fix C: keep layout stable while images load --- */
+        img { height: auto; max-width: 100%; }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: url('https://cdn.shopify.com/s/files/1/0674/6747/7282/files/sky.png?v=1750990355') repeat;
+            margin: 0;
+            padding: 0;
+            color: white;
+        }
+        
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: calc(2rem + env(safe-area-inset-top)) 2rem 2rem 2rem;
+            background: url('https://cdn.shopify.com/s/files/1/0674/6747/7282/files/sky.png?v=1750990355') repeat;
+            backdrop-filter: blur(10px);
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+            transition: padding 0.5s ease-out, opacity 0.5s ease-out, transform 0.5s ease-out;
+            overflow: visible;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .step {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .step.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .step.fade-out {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            font-family: 'Press Start 2P', cursive;
+            font-size: clamp(1.5rem, 6vw, 3rem);
+            margin-bottom: 2rem;
+            color: white;
+            text-shadow: -2px -2px 0 #31afed, 2px -2px 0 #31afed, -2px 2px 0 #31afed, 2px 2px 0 #31afed;
+            line-height: 1.4;
+        }
+        
+        .description {
+            font-size: clamp(0.8rem, 3vw, 1.1rem);
+            margin: 0 auto 2rem auto;
+            opacity: 0.9;
+            max-width: 700px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        button {
+            padding: clamp(12px, 3vw, 18px) clamp(24px, 5vw, 40px);
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            min-width: 140px;
+            margin: 0.5rem;
+            font-family: 'Press Start 2P', cursive;
+        }
+        
+        button.primary { 
+            background: linear-gradient(45deg, #e74c3c, #c0392b); 
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3); 
+        }
+        
+        button.secondary { 
+            background: linear-gradient(45deg, #9b59b6, #8e44ad); 
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3); 
+        }
+        
+        button.class-button { 
+            background: linear-gradient(45deg, #3498db, #2980b9); 
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); 
+        }
+        
+        button:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+        }
+        
+        button:active { 
+            transform: translateY(0); 
+        }
+        
+        .hero-image {
+            margin-top: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            width: clamp(300px, 60vw, 550px);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(100vh);
+            transition: transform 0.8s ease-out;
+        }
+        
+        .hero-image.slide-up img {
+            transform: translateY(0);
+        }
+        
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 800px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .quiz-question-container {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: none;
+        }
+        
+        .quiz-question-container.active {
+            opacity: 1;
+            display: block;
+        }
+        
+        .quiz-question-container.fading {
+            display: block;
+        }
+        
+        .question-counter {
+            font-size: clamp(1.05rem, 3vw, 1.3rem);
+            color: #ffd700;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+            font-weight: bold;
+        }
+        
+        .quiz-question {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        
+        .quiz-subtext {
+            font-size: clamp(0.65rem, 2vw, 0.85rem);
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .quiz-subtext a {
+            color: #31afed;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        
+        .quiz-subtext a:hover {
+            color: #31afed;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 1.2rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            line-height: 1.6;
+        }
+        
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #31afed;
+            transform: translateX(5px);
+        }
+        
+        .quiz-option.selected {
+            background: rgba(49, 175, 237, 0.2);
+            border-color: #31afed;
+        }
+        
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .popup-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .popup-content {
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(231, 76, 60, 0.8);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-family: Arial, sans-serif;
+            padding: 0;
+            min-width: unset;
+            margin: 0;
+        }
+        
+        .popup-close:hover {
+            background: rgba(192, 57, 43, 1);
+            transform: rotate(90deg);
+        }
+        
+        .popup-content h2 {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            margin-bottom: 1.5rem;
+            color: #FFD700;
+            text-shadow: -2px -2px 0 #8B4513, 2px -2px 0 #8B4513, -2px 2px 0 #8B4513, 2px 2px 0 #8B4513;
+        }
+        
+        .popup-content p {
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+            color: #FFFFFF;
+        }
+        
+        .popup-content p strong {
+            color: #90EE90;
+            text-shadow: -1px -1px 0 #2F4F2F, 1px -1px 0 #2F4F2F, -1px 1px 0 #2F4F2F, 1px 1px 0 #2F4F2F;
+        }
+        
+        .popup-time {
+            color: #31afed;
+            text-shadow: -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000, 1px 1px 0 #000000;
+        }
+
+        .class-container {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 800px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .price {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: bold;
+            color: #FF1493;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            border: none;
+            text-shadow: -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000, 2px 2px 0 #000000;
+            margin-top: auto;
+        }
+
+        .price-breakdown-link {
+            font-size: clamp(0.6rem, 1.8vw, 0.75rem);
+            color: #31afed;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        .price-breakdown-link:hover {
+            color: #5bc0de;
+        }
+
+        .pricing-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem auto;
+            max-width: 1400px;
+            padding: 0 1rem;
+        }
+        
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .pricing-card h3 {
+            font-size: clamp(0.9rem, 2.2vw, 1.15rem);
+            color: #ffd700;
+            margin-bottom: 1rem;
+            text-align: center;
+            text-shadow: -2px -2px 0 #000000, 2px -2px 0 #000000, -2px 2px 0 #000000, 2px 2px 0 #000000;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+            flex-grow: 1;
+        }
+        
+        .pricing-card ul li {
+            font-size: clamp(0.55rem, 1.5vw, 0.75rem);
+            line-height: 1.6;
+            margin-bottom: 0.8rem;
+            padding-left: 1.2rem;
+            position: relative;
+            opacity: 0.9;
+        }
+        
+        .pricing-card ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #31afed;
+            font-weight: bold;
+        }
+
+        .pricing-card .price {
+            line-height: 1.85;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-image img {
+                width: clamp(320px, 95vw, 600px);
+            }
+            
+            .quiz-container {
+                max-width: 90vw;
+                padding: 1.5rem;
+            }
+            
+            .popup-content {
+                padding: 1.5rem;
+            }
+
+            .pricing-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 0 0.5rem;
+            }
+            
+            .pricing-card {
+                padding: 1.2rem;
+            }
+            
+            .pricing-card ul li {
+                font-size: 0.7rem;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 1200px) {
+            .pricing-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media screen and (max-width: 435px) {
+            button {
+                transform: scale(0.9);
+                transform-origin: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="welcomePage" class="step active">
+            <h1>🌟 Welcome to<br>KoreanLearnin!</h1>
+            <p class="description">Your journey to mastering Korean starts here. Join over 180 active students!</p>
+            <div class="buttons">
+                <button onclick="showStep('quizPage')" class="primary">Which Class is Best for YOU?</button>
+            </div>
+            <div class="hero-image">
+                <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/KOREANLEARNIN.png?v=1754436909" alt="Korean Learning" />
+            </div>
+        </div>
+
+        <div id="quizPage" class="step">
+            <h1>📝 Find Your Perfect Plan</h1>
+            <div class="quiz-container">
+                <div id="question1" class="quiz-question-container">
+                    <div class="question-counter">Question 1 out of 9</div>
+                    <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/1_3bcd4411-621a-427e-80b1-44b87e6c33ec.png?v=1760928203" alt="Question 1" style="width: clamp(200px, 50vw, 400px); height: auto; margin: -2rem auto -0.5rem auto; display: block; border-radius: 10px;">
+                    <div class="quiz-question">
+                        In an ideal world, if all classes were free, how many Korean classes would you take per week?
+                    </div>
+                    <div class="quiz-subtext">
+                        We offer up to 5 classes per week. These classes are entirely optional and meant for Extra Practice.<br>
+                        <a onclick="showSchedulePopup()">CLICK HERE TO VIEW OUR CLASS SCHEDULE</a>
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-points="1"><strong>A.</strong> 1–2 classes - I prefer a relaxed pace.</div>
+                        <div class="quiz-option" data-points="2"><strong>B.</strong> 3–5 classes - I like to stay consistent without without overdoing it.</div>
+                        <div class="quiz-option" data-points="3"><strong>C.</strong> 6-7 classes - I want to immerse myself and make progress ASAP.</div>
+                        <div class="quiz-option" data-points="4"><strong>D.</strong> I need ALL the classes and personal tutoring too!</div>
+                    </div>
+                </div>
+
+                <div id="question2" class="quiz-question-container">
+                    <div class="question-counter">Question 2 out of 9</div>
+                    <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/2_d741a287-81bd-4e02-a4ec-3c5c32fe316c.png?v=1760928204" alt="Question 2" style="width: clamp(200px, 50vw, 400px); height: auto; margin: -2rem auto -0.5rem auto; display: block; border-radius: 10px;">
+                    <div class="quiz-question">
+                        Outside of class, do you typically use the textbook?
+                    </div>
+                    <div class="quiz-subtext">
+                        Our online student textbook contains over 100 video lessons separated by Korean level, flashcards and PDFs for each lesson, games, and AI Practice Bots.
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-points="2.25"><strong>A.</strong> Yes</div>
+                        <div class="quiz-option" data-points="1"><strong>B.</strong> No</div>
+                    </div>
+                </div>
+
+                <div id="question3" class="quiz-question-container">
+                    <div class="question-counter">Question 3 out of 9</div>
+                    <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/3_255d0b85-f92a-4ae7-ba49-309e8d0be120.png?v=1760928205" alt="Question 3" style="width: clamp(200px, 50vw, 400px); height: auto; margin: -2rem auto -0.5rem auto; display: block; border-radius: 10px;">
+                    <div class="quiz-question">
+                        How do you prefer to study?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-points="1"><strong>A.</strong>I'm chill - I learn when I can and prefer to take class whenever I want, even if there's some long breaks in between.</div>
+                        <div class="quiz-option" data-points="2"><strong>B.</strong>I'm ready to commit to a consistent self-study schedule, but need some guidance and a study buddy. I prefer getting help when I need it, rather than attending class every day.</div>
+                        <div class="quiz-option" data-points="3"><strong>C.</strong>I need structured, small group classes with real-time feedback. I can't study on my own and prefer a traditional classroom.</div>
+                        <div class="quiz-option" data-points="4"><strong>D.</strong>I'm obsessed - I want 1:1 personal coaching.</div>
+                    </div>
+                </div>
+
+                <div id="question4" class="quiz-question-container">
+                    <div class="question-counter">Question 4 out of 9</div>
+                    <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/4_b53f1fc4-cd1d-4673-970c-0d2c7f814c4a.png?v=1760928206" alt="Question 4" style="width: clamp(200px, 50vw, 400px); height: auto; margin: -2rem auto -0.5rem auto; display: block; border-radius: 10px;">
+                    <div class="quiz-question">
+                        Do you want 6 weeks of extra tutoring sessions to start you off on the right foot and show you around our Academy? *($45 Addon)*
+                    </div>
+                    <div class="quiz-subtext">
+                        Optional, but many students prefer 6 weeks of orientation tutoring sessions to show them the fundamentals, how to study, and how to use our Academy to the fullest.
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-points="2.25"><strong>A.</strong>Yes, I'd love extra tutoring, so I don't feel lost.</div>
+                        <div class="quiz-option" data-points="1"><strong>B.</strong> No, I want to jump right into the drop-in classes and video lessons. I'd rather learn on my own.</div>
+                    </div>
+                </div>
+
+                <div id="question5" class="quiz-question-container">
+                    <div class="question-counter">Question 5 out of 9</div>
+                    <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/5_aafed38c-9333-4585-ad5e-cd11d3a81fe7.png?v=1760928207" alt="Question 5" style="width: clamp(200px, 50vw, 400px); height: auto; margin: -2rem auto -0.5rem auto; display: block; border-radius: 10px;">
+                    <div class="quiz-question">
+                        Do you feel like you'd benefit from extra accountability (someone to keep you consistent and check in on your progress)?
+                    </div>
+                    <div class="quiz-subtext">
+                        Optional, but we have Private Accountability Concierges to personally check-in on your studies. PLUS, our Study Pods assign you to a weekly study buddy group. Ever been ghosted by a study buddy? Our Study Pods reward you for studying together, so you'll never be ghosted again.
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-points="1"><strong>A.</strong> I'm pretty self-disciplined. I want to learn at my own pace; I don't need check-ins.</div>
+                        <div class="quiz-option" data-points="2"><strong>B.</strong> Yes, the private check-ins and Study Pod sounds like what I need.</div>
+                        <div class="quiz-option" data-points="3"><strong>C.</strong> Hmmm... I'd like the private check-ins, the Study Pod, AND structured classes the same day every week. I don't want to learn on my own.</div>
+                        <div class="quiz-option" data-points="4"><strong>D.</strong> I mainly want 1:1 guidance to make sure I never fall behind.</div>
+                    </div>
+                </div>
+
+                <div id="question6" class="quiz-question-container">
+                    <div class="question-counter">Question 6 out of 9</div>
+                    <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/6_89b3909d-d87a-4737-b35e-64fb5a06ad7e.png?v=1760928207" alt="Question 6" style="width: clamp(200px, 50vw, 400px); height: auto; margin: -2rem auto -0.5rem auto; display: block; border-radius: 10px;">
+                    <div class="quiz-question">
+                        What kind of class structure fits your learning style best?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-points="1"><strong>A.</strong> Drop-in style - I like being able to choose when to join, no attendance mandatory.</div>
+                        <div class="quiz-option" data-points="2"><strong>B.</strong> Drop-in style, but with a bit more help - I like being able to choose when to join, but I need just a bit more help and don't want to be left on my own</div>
+                        <div class="quiz-option" data-points="3"><strong>C.</strong> Structured weekend classes that build on each other, led by Mr. Calvin. I like traditional guided small group classes.</div>
+                        <div class="quiz-option" data-points="4"><strong>D.</strong> Personalized 1:1 coaching - I want everything tailored to my level and goals.</div>
+                    </div>
+                </div>
+
+                <div id="question7" class="quiz-question-container">
+                    <div class="question-counter">Question 7 out of 9</div>
+                    <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/7_cb9a78b2-c966-4645-a07f-37d8f7a63442.png?v=1760928207" alt="Question 7" style="width: clamp(200px, 50vw, 400px); height: auto; margin: -2rem auto -0.5rem auto; display: block; border-radius: 10px;">
+                    <div class="quiz-question">
+                        How long do you see yourself committing to learning Korean?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-points="1"><strong>A.</strong> A few months just to test it out. I'm curious how it'll go.</div>
+                        <div class="quiz-option" data-points="2"><strong>B.</strong> 5–8+ months - I'm dedicated to becoming conversational.</div>
+                        <div class="quiz-option" data-points="3"><strong>C.</strong> 9-12+ months - I want to be conversational ASAP and I know I can commit.</div>
+                        <div class="quiz-option" data-points="4"><strong>D.</strong> Several years - I want to master Korean fully and get personal mentorship.</div>
+                    </div>
+                </div>
+
+                <div id="question8" class="quiz-question-container">
+                    <div class="question-counter">Question 8 out of 9</div>
+                    <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/8_842bae4f-0bb2-4b09-b974-ac27df058966.png?v=1760928208" alt="Question 8" style="width: clamp(200px, 50vw, 400px); height: auto; margin: -2rem auto -0.5rem auto; display: block; border-radius: 10px;">
+                    <div class="quiz-question">
+                        Do you prefer those fun, self-study learning apps OR guided, structured lessons in a classroom setting?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-points="1"><strong>A.</strong> Self-study apps; I like full flexibility.</div>
+                        <div class="quiz-option" data-points="2"><strong>B.</strong> A mix of self-study apps and group practice.</div>
+                        <div class="quiz-option" data-points="3"><strong>C.</strong> Highly structured lessons with a clear curriculum.</div>
+                        <div class="quiz-option" data-points="4"><strong>D.</strong> Fully personalized guidance and private tutoring.</div>
+                    </div>
+                </div>
+
+                <div id="question9" class="quiz-question-container">
+                    <div class="question-counter">Question 9 out of 9</div>
+                    <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/9_0f32e709-67d1-4986-ba9d-f492a0546be7.png?v=1760928207" alt="Question 9" style="width: clamp(200px, 50vw, 400px); height: auto; margin: -2rem auto -0.5rem auto; display: block; border-radius: 10px;">
+                    <div class="quiz-question">
+                        When you picture yourself speaking Korean confidently, what kind of support do you imagine helped you get there?
+                    </div>
+                    <div class="quiz-options">
+                        <div class="quiz-option" data-points="1"><strong>A.</strong> Just consistent practice on my own, with videos and flashcards.</div>
+                        <div class="quiz-option" data-points="2"><strong>B.</strong> Supportive tutors and accountability partners.</div>
+                        <div class="quiz-option" data-points="3"><strong>C.</strong> Regular live, personalized feedback from a dedicated teacher.</div>
+                        <div class="quiz-option" data-points="4"><strong>D.</strong> 1:1 mentorship, detailed corrections, and a tailored action plan.</div>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button onclick="nextQuestion()" class="primary">Next Question</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flex Plan Result Page -->
+        <div id="flexResultPage" class="step">
+            <h1>🎉 Your Perfect Plan!</h1>
+            <div class="class-container">
+                <h2 style="font-size: clamp(1.5rem, 4vw, 2rem); color: #ffd700; margin-bottom: 1rem; text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000;">Flex Plan</h2>
+                <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; text-align: left;">
+                    <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0;">
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFFFFF;">
+                            <span style="position: absolute; left: 0; color: #31afed; font-weight: bold;">•</span>
+                            Up to 5 optional, drop-in Support Classes per week (Each class is 1 hour long)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFFFFF;">
+                            <span style="position: absolute; left: 0; color: #31afed; font-weight: bold;">•</span>
+                            Free online textbook (100+ video lessons, flashcards, and PDFs)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFA07A;">
+                            <span style="position: absolute; left: 0; color: #FF6347; font-weight: bold;">•</span>
+                            NO study buddies, or accountability concierge
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFA07A;">
+                            <span style="position: absolute; left: 0; color: #FF6347; font-weight: bold;">•</span>
+                            NO class recordings or premade notes
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFA07A;">
+                            <span style="position: absolute; left: 0; color: #FF6347; font-weight: bold;">•</span>
+                            NO weekend classes
+                        </li>
+                    </ul>
+                </div>
+                <div class="price" style="margin: 2rem 0;">
+                    PRICE: $75/MONTH
+                    <span class="price-breakdown-link" onclick="showPriceBreakdown('flex')">*Click to see the price breakdown</span>
+                </div>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
+                        Looking for a more serious program? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a> to view our other plans.
+                    </p>
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; opacity: 0.9;">
+                        Too expensive? We offer textbook rentals for $27/month. Please contact us for more information.
+                    </p>
+                </div>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('welcomePage')" class="secondary">Start Over</button>
+            </div>
+        </div>
+
+        <!-- Performance Plan Result Page -->
+        <div id="performanceResultPage" class="step">
+            <h1>🎉 Your Perfect Plan!</h1>
+            <div class="class-container">
+                <h2 style="font-size: clamp(1.5rem, 4vw, 2rem); color: #ffd700; margin-bottom: 1rem; text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000;">Performance Plan</h2>
+                <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; text-align: left;">
+                    <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0;">
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFFFFF;">
+                            <span style="position: absolute; left: 0; color: #31afed; font-weight: bold;">•</span>
+                            Up to 5 optional, drop-in Support Classes per week (each class is 1 hour long)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFFFFF;">
+                            <span style="position: absolute; left: 0; color: #31afed; font-weight: bold;">•</span>
+                            Free online textbook (100+ video lessons, flashcards, and PDFs)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            On-demand recordings of all Support Classes (for if you miss class)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            Pre-made notes (PDFs) for every Support Class
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            Private Accountability Concierge to keep you motivated
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            Access to our Study Pods (Group of 2-4 Study Buddies)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFA07A;">
+                            <span style="position: absolute; left: 0; color: #FF6347; font-weight: bold;">•</span>
+                            NO weekend classes
+                        </li>
+                    </ul>
+                </div>
+                <div class="price" style="margin: 2rem 0;">
+                    PRICE: $89/MONTH
+                    <span class="price-breakdown-link" onclick="showPriceBreakdown('performance')">*Click to see the price breakdown</span>
+                </div>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
+                        Looking for a more serious program? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a> to view our other plans.
+                    </p>
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; opacity: 0.9;">
+                        Too expensive? Check out our Flex plan <a onclick="showStep('flexResultPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a>.
+                    </p>
+                </div>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('welcomePage')" class="secondary">Start Over</button>
+            </div>
+        </div>
+
+        <!-- Performance Plus Result Page -->
+        <div id="performancePlusResultPage" class="step">
+            <h1>🎉 Your Perfect Plan!</h1>
+            <div class="class-container">
+                <h2 style="font-size: clamp(1.5rem, 4vw, 2rem); color: #ffd700; margin-bottom: 1rem; text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000;">Performance Plus</h2>
+                <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; text-align: left;">
+                    <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0;">
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFFFFF;">
+                            <span style="position: absolute; left: 0; color: #31afed; font-weight: bold;">•</span>
+                            Up to 5 optional, drop-in Support Classes per week (each class is 1 hour long)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFFFFF;">
+                            <span style="position: absolute; left: 0; color: #31afed; font-weight: bold;">•</span>
+                            Free online textbook (100+ video lessons, flashcards, and PDFs)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            On-demand recordings of all Support Classes (for if you miss class)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            Pre-made notes (PDFs) for every Support Class
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            Private Accountability Concierge to keep you motivated
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            Access to our Study Pods (Group of 2-4 Study Buddies)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFD700;">
+                            <span style="position: absolute; left: 0; color: #FFA500; font-weight: bold;">•</span>
+                            Join our exclusive Weekend Classes! Unlike the Support Classes on weekdays, each weekend class builds off the last class.
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFD700;">
+                            <span style="position: absolute; left: 0; color: #FFA500; font-weight: bold;">•</span>
+                            The Weekend classes are small, structured group classes sorted by level (Mr. Calvin will personally guide you through the entire curriculum)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFD700;">
+                            <span style="position: absolute; left: 0; color: #FFA500; font-weight: bold;">•</span>
+                            Achieve your Korean goals approximately 3x faster!
+                        </li>
+                    </ul>
+                </div>
+                <div class="price" style="margin: 2rem 0;">
+                    PRICE: $275/MONTH
+                    <span class="price-breakdown-link" onclick="showPriceBreakdown('performanceplus')">*Click to see the price breakdown</span>
+                </div>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
+                        Looking for a more serious program? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a> to view our other plans.
+                    </p>
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; opacity: 0.9;">
+                        Too expensive? Check out our Performance plan <a onclick="showStep('performanceResultPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a>.
+                    </p>
+                </div>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('welcomePage')" class="secondary">Start Over</button>
+            </div>
+        </div>
+
+        <!-- Premium Plan Result Page -->
+        <div id="premiumResultPage" class="step">
+            <h1>🎉 Your Perfect Plan!</h1>
+            <div class="class-container">
+                <h2 style="font-size: clamp(1.5rem, 4vw, 2rem); color: #ffd700; margin-bottom: 1rem; text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000, 0 -4px 0 #000, 0 4px 0 #000, -4px 0 0 #000, 4px 0 0 #000;">Premium Plan</h2>
+                <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; text-align: left;">
+                    <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0;">
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFFFFF;">
+                            <span style="position: absolute; left: 0; color: #31afed; font-weight: bold;">•</span>
+                            Up to 5 optional, drop-in Support Classes per week (each class is 1 hour long)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFFFFF;">
+                            <span style="position: absolute; left: 0; color: #31afed; font-weight: bold;">•</span>
+                            Free online textbook (100+ video lessons, flashcards, and PDFs)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            On-demand recordings of all Support Classes (for if you miss class)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            Pre-made notes (PDFs) for every Support Class
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            Private Accountability Concierge to keep you motivated
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #90EE90;">
+                            <span style="position: absolute; left: 0; color: #00FF00; font-weight: bold;">•</span>
+                            Access to our Study Pods (Group of 2-4 Study Buddies)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFD700;">
+                            <span style="position: absolute; left: 0; color: #FFA500; font-weight: bold;">•</span>
+                            Join our exclusive Weekend Classes! Unlike the Support Classes on weekdays, each weekend class builds off the last class.
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FFD700;">
+                            <span style="position: absolute; left: 0; color: #FFA500; font-weight: bold;">•</span>
+                            The Weekend classes are small, structured group classes sorted by level (Mr. Calvin will personally guide you through the entire curriculum)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FF69B4;">
+                            <span style="position: absolute; left: 0; color: #FF1493; font-weight: bold;">•</span>
+                            Plus, get 1 hour of 1:1 tutoring with Mr. Calvin every week (based on your availability)
+                        </li>
+                        <li style="font-size: clamp(0.7rem, 2vw, 0.9rem); line-height: 1.8; margin-bottom: 1rem; padding-left: 1.5rem; position: relative; color: #FF69B4;">
+                            <span style="position: absolute; left: 0; color: #FF1493; font-weight: bold;">•</span>
+                            Access to 24/7 Support: Priority Video response to any questions you may have
+                        </li>
+                    </ul>
+                </div>
+                <div class="price" style="margin: 2rem 0;">
+                    PRICE: $549/MONTH
+                    <span class="price-breakdown-link" onclick="showPriceBreakdown('premium')">*Click to see the price breakdown</span>
+                </div>
+                
+                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
+                        Want to see all of our programs? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a> to view our other plans.
+                    </p>
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; opacity: 0.9;">
+                        Too expensive? Check out our Performance Plus plan <a onclick="showStep('performancePlusResultPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a>.
+                    </p>
+                </div>
+            </div>
+            <div class="buttons">
+                <button onclick="showStep('welcomePage')" class="secondary">Start Over</button>
+            </div>
+        </div>
+
+        <!-- All Plans Page -->
+        <div id="allPlansPage" class="step">
+            <h1>📚 All of Our Classes</h1>
+            <p class="description">Choose the perfect plan for your KoreanLearnin journey!</p>
+            
+            <div class="pricing-container">
+                <div class="pricing-card">
+                    <h3>Flex Plan</h3>
+                    <ul>
+                        <li>Up to 5 optional, drop-in Support Classes per week *Each class is 1 hour long</li>
+                        <li>Free online textbook (100+ video lessons, flashcards, and PDFs)</li>
+                        <li>NO accountability concierge, or study buddies</li>
+                        <li>NO class recordings or premade notes</li>
+                        <li>NO weekend classes</li>
+                    </ul>
+                    <div class="price" style="font-size: clamp(0.9rem, 2.2vw, 1.2rem);">
+                        PRICE: $75/MONTH
+                        <span class="price-breakdown-link" onclick="showPriceBreakdown('flex')">*Click to see the price breakdown</span>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Performance Plan</h3>
+                    <p style="color: #00FF00; text-align: center; font-size: clamp(0.7rem, 2vw, 0.9rem); margin-bottom: 1rem; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;">TOP PICK!</p>
+                    <ul>
+                        <li>Everything in the Flex plan</li>
+                        <li>On-demand recordings of all Support Classes (for if you miss class)</li>
+                        <li>Pre-made notes (PDFs) for every Support Class</li>
+                        <li>Private Accountability Concierge to keep you motivated</li>
+                        <li>Access to our Study Pods (Group of 2-4 study buddies)</li>
+                        <li>NO weekend classes</li>
+                    </ul>
+                    <div class="price" style="font-size: clamp(0.9rem, 2.2vw, 1.2rem);">
+                        PRICE: $89/MONTH
+                        <span class="price-breakdown-link" onclick="showPriceBreakdown('performance')">*Click to see the price breakdown</span>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Performance Plus</h3>
+                    <ul>
+                        <li>Everything in the Flex and Performance Plans</li>
+                        <li>Plus, join our exclusive Weekend Classes! Unlike the Support Classes on weekdays, each weekend class builds off the last class.</li>
+                        <li>Structured, small group classes sorted by level (Mr. Calvin will personally guide you through the entire curriculum)</li>
+                        <li>Students learn 3x faster</li>
+                    </ul>
+                    <div class="price" style="font-size: clamp(0.9rem, 2.2vw, 1.2rem);">
+                        PRICE: $275/MONTH
+                        <span class="price-breakdown-link" onclick="showPriceBreakdown('performanceplus')">*Click to see the price breakdown</span>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Premium Plan</h3>
+                    <ul>
+                        <li>Everything in the Flex, Performance, and Performance Plus Plans</li>
+                        <li>Plus, get 1 hour of 1:1 tutoring with Mr. Calvin every week</li>
+                        <li>24/7 Support - get priority video support for any question you may have</li>
+                    </ul>
+                    <div class="price" style="font-size: clamp(0.9rem, 2.2vw, 1.2rem);">
+                        PRICE: $549/MONTH
+                        <span class="price-breakdown-link" onclick="showPriceBreakdown('premium')">*Click to see the price breakdown</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button onclick="showStep('welcomePage')" class="secondary">Restart Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schedule Popup -->
+    <div id="schedulePopup" class="popup-overlay" onclick="closePopup(event)">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="popup-close" onclick="closeSchedulePopup()">×</button>
+            <h2>📅 Weekly Class Schedule</h2>
+            <p><strong>Monday:</strong> Sentence-Building Class</p>
+            <p><strong>Tuesday:</strong> Reading & Pronunciation Class</p>
+            <p><strong>Wednesday:</strong> Vocab Class (For ALL Levels)</p>
+            <p><strong>Thursday:</strong> Compound Sentence Class (For ADVANCED learners only)</p>
+            <p><strong>Friday:</strong> Listening Class</p>
+            <p style="margin-top: 1.5rem; opacity: 0.9; color: #FFFFFF;">Classes are 1 hour long. All classes are at <span style="color: #31afed !important; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000 !important; font-weight: bold !important;">8:00 PM New York Time</span></p>
+            <p style="margin-top: 1.5rem; opacity: 0.9; color: #FFFFFF;">You will UNLOCK each class as you progress through the levels.</p>
+        </div>
+    </div>
+
+    <!-- Price Breakdown Popups -->
+    <div id="priceBreakdownPopup" class="popup-overlay" onclick="closePriceBreakdown(event)">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <button class="popup-close" onclick="closePriceBreakdown()">×</button>
+            <div id="priceBreakdownContent"></div>
+        </div>
+    </div>
+
+    <!-- Error Popup -->
+    <div id="errorPopup" class="popup-overlay" onclick="closeErrorPopup(event)">
+        <div class="popup-content" onclick="event.stopPropagation()" style="max-width: 400px;">
+            <button class="popup-close" onclick="closeErrorPopup()">×</button>
+            <h2 style="color: #ff6b6b;">⚠️ Oops!</h2>
+            <p style="font-size: clamp(0.8rem, 2vw, 1rem); text-align: center;">Please select an answer before continuing!</p>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestion = 1;
+        let selectedAnswer = null;
+        let totalPoints = 0;
+        let question4AnswerB = false; // Track if user selected "No tutoring" option
+        
+        function showStep(stepId) {
+            const allSteps = document.querySelectorAll('.step');
+            const currentActive = document.querySelector('.step.active');
+            
+            if (currentActive) {
+                currentActive.classList.add('fade-out');
+            }
+            
+            setTimeout(() => {
+                allSteps.forEach(step => {
+                    step.classList.remove('active', 'fade-out');
+                });
+                const targetStep = document.getElementById(stepId);
+                if (targetStep) {
+                    targetStep.classList.add('active');
+                    
+                    if (stepId === 'welcomePage') {
+                        setTimeout(() => {
+                            const heroImage = targetStep.querySelector('.hero-image');
+                            if (heroImage) {
+                                heroImage.classList.add('slide-up');
+                            }
+                        }, 100);
+                    }
+                    
+                    if (stepId === 'quizPage') {
+                        currentQuestion = 1;
+                        selectedAnswer = null;
+                        totalPoints = 0;
+                        question4AnswerB = false; // Reset question 4 tracking
+                        document.querySelectorAll('.quiz-question-container').forEach((q, i) => {
+                            q.classList.remove('active', 'fading');
+                            q.style.display = 'none';
+                        });
+                        const firstQuestion = document.getElementById('question1');
+                        firstQuestion.style.display = 'block';
+                        setTimeout(() => {
+                            firstQuestion.classList.add('active');
+                        }, 10);
+                        document.querySelectorAll('.quiz-option').forEach(opt => {
+                            opt.classList.remove('selected');
+                        });
+                    }
+                    
+                    setTimeout(() => {
+                        window.scrollTo(0, 0);
+                        document.documentElement.scrollTop = 0;
+                        document.body.scrollTop = 0;
+                    }, 0);
+                }
+            }, currentActive ? 300 : 0);
+        }
+        
+        // Add click handlers to all quiz options
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    const questionContainer = this.closest('.quiz-question-container');
+                    questionContainer.querySelectorAll('.quiz-option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    selectedAnswer = parseFloat(this.getAttribute('data-points'));
+                    
+                    // Check if this is question 4, option B (no tutoring)
+                    if (questionContainer.id === 'question4' && this.textContent.includes('No, I want to jump right into the drop-in classes')) {
+                        question4AnswerB = true;
+                    }
+                });
+            });
+        });
+        
+        function showErrorPopup() {
+            const popup = document.getElementById('errorPopup');
+            popup.style.display = 'flex';
+            setTimeout(() => {
+                popup.classList.add('active');
+            }, 10);
+        }
+
+        function closeErrorPopup(event) {
+            if (!event || event.target.classList.contains('popup-overlay') || event.target.classList.contains('popup-close')) {
+                const popup = document.getElementById('errorPopup');
+                popup.classList.remove('active');
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 300);
+            }
+        }
+
+        function nextQuestion() {
+            if (selectedAnswer === null) {
+                showErrorPopup();
+                return;
+            }
+            
+            totalPoints += selectedAnswer;
+            console.log('Question ' + currentQuestion + ' - Points awarded:', selectedAnswer);
+            console.log('Total points so far:', totalPoints);
+            
+            const currentQ = document.getElementById('question' + currentQuestion);
+            
+            // Fade out current question
+            currentQ.classList.remove('active');
+            
+            setTimeout(() => {
+                // Hide ALL questions first to prevent multiple showing
+                document.querySelectorAll('.quiz-question-container').forEach(q => {
+                    q.classList.remove('active', 'fading');
+                    q.style.display = 'none';
+                });
+                
+                currentQuestion++;
+                
+                const nextQ = document.getElementById('question' + currentQuestion);
+                if (nextQ) {
+                    // Show next question
+                    nextQ.classList.add('fading');
+                    nextQ.style.display = 'block';
+                    selectedAnswer = null;
+                    
+                    // Trigger fade in
+                    setTimeout(() => {
+                        nextQ.classList.add('active');
+                        nextQ.classList.remove('fading');
+                    }, 10);
+                    
+                    setTimeout(() => {
+                        window.scrollTo(0, 0);
+                        document.documentElement.scrollTop = 0;
+                        document.body.scrollTop = 0;
+                    }, 0);
+                } else {
+                    showResults();
+                }
+            }, 500); // Wait for fade out to complete
+        }
+        
+        function showResults() {
+            console.log('Final total points:', totalPoints);
+            console.log('Question 4 Answer B selected:', question4AnswerB);
+            
+            let resultPageId = '';
+            
+            // If user selected "No tutoring" on question 4, always give Flex plan
+            if (question4AnswerB) {
+                resultPageId = 'flexResultPage';
+                console.log('Overriding to Flex due to Question 4 Answer B');
+            } else if (totalPoints >= 9.0 && totalPoints <= 14.5) {
+                resultPageId = 'flexResultPage';
+            } else if (totalPoints >= 14.51 && totalPoints <= 20.0) {
+                resultPageId = 'performanceResultPage';
+            } else if (totalPoints >= 20.01 && totalPoints <= 27.0) {
+                resultPageId = 'performancePlusResultPage';
+            } else if (totalPoints >= 27.01) {
+                resultPageId = 'premiumResultPage';
+            } else {
+                resultPageId = 'flexResultPage';
+            }
+            
+            console.log('Navigating to:', resultPageId);
+            
+            showStep(resultPageId);
+        }
+        
+        function showSchedulePopup() {
+            const popup = document.getElementById('schedulePopup');
+            popup.style.display = 'flex';
+            setTimeout(() => {
+                popup.classList.add('active');
+            }, 10);
+        }
+        
+        function closeSchedulePopup() {
+            const popup = document.getElementById('schedulePopup');
+            popup.classList.remove('active');
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 300);
+        }
+        
+        function closePopup(event) {
+            if (event.target.classList.contains('popup-overlay')) {
+                closeSchedulePopup();
+            }
+        }
+
+        function showPriceBreakdown(plan) {
+            const popup = document.getElementById('priceBreakdownPopup');
+            const content = document.getElementById('priceBreakdownContent');
+            
+            let breakdownHTML = '';
+            
+            if (plan === 'flex') {
+                breakdownHTML = `
+                    <h2>Flex: Price Breakdown</h2>
+                    <p><strong>Total:</strong> $75/month</p>
+                    <p style="margin-top: 1rem; color: #31afed;">This includes:</p>
+                    <p>• 5 optional Support Classes per week (1 hour each) = $3.75 per live hour of class</p>
+                    <p>• Online textbook with 100+ video lessons</p>
+                    <p>• Flashcards and PDFs for each lesson</p>
+                    <p>• Games and AI Practice Bots for each lesson</p>
+                `;
+            } else if (plan === 'performance') {
+                breakdownHTML = `
+                    <h2 style="line-height: 1.4;">Performance: Price Breakdown</h2>
+                    <p><strong>Total:</strong> $89/month</p>
+                    <p style="margin-top: 1rem; color: #31afed;">This includes:</p>
+                    <p>• 5 optional Support Classes per week (1 hour each) = $3.75 per live hour of class</p>
+                    <p>• All other benefits from Flex plan</p>
+                    <p style="color: #FFD700;">Receive the benefits below for only $14/month more than the Flex plan:</p>
+                    <p style="margin-left: 1.5rem;">• On-demand recordings of all Support Classes</p>
+                    <p style="margin-left: 1.5rem;">• Pre-made notes (PDFs) for every Support Class</p>
+                    <p style="margin-left: 1.5rem;">• Private Accountability Concierge</p>
+                    <p style="margin-left: 1.5rem;">• Access to Study Pods (2-4 study buddies)</p>
+                `;
+            } else if (plan === 'performanceplus') {
+                breakdownHTML = `
+                    <h2 style="line-height: 1.4;">Performance Plus: Price Breakdown</h2>
+                    <p><strong>Total:</strong> $275/month</p>
+                    <p style="margin-top: 1rem; color: #31afed;">This includes:</p>
+                    <p>• 5 optional Support Classes per week (1 hour each) PLUS Exclusive Weekend Classes (1 hour) = $11.46 per live hour of class</p>
+                    <p>• All other benefits from Flex & Performance plans</p>
+                    <p>• Personal guidance from Mr. Calvin</p>
+                    <p>• On average, 3x faster learning progress</p>
+                `;
+            } else if (plan === 'premium') {
+                breakdownHTML = `
+                    <h2>Premium: Price Breakdown</h2>
+                    <p><strong>Total:</strong> $549/month</p>
+                    <p style="margin-top: 1rem; color: #31afed;">This includes:</p>
+                    <p>• 5 optional Support Classes per week (1 hour each) PLUS Exclusive Weekend Classes (1 hour) = $11.46 per live hour of class</p>
+                    <p>• All other benefits from Flex, Performance, & Performance Plus plans</p>
+                    <p>• 1 hour of 1:1 tutoring with Mr. Calvin every week = $68.50 per weekly tutoring session</p>
+                    <p>• 24/7 Priority video support</p>
+                    <p>• Personalized learning plans, guaranteed to hit your goals</p>
+                `;
+            }
+            
+            content.innerHTML = breakdownHTML;
+            popup.style.display = 'flex';
+            setTimeout(() => {
+                popup.classList.add('active');
+            }, 10);
+        }
+
+        function closePriceBreakdown(event) {
+            if (!event || event.target.classList.contains('popup-overlay')) {
+                const popup = document.getElementById('priceBreakdownPopup');
+                popup.classList.remove('active');
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 300);
+            }
+        }
+        
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                const heroImage = document.querySelector('#welcomePage .hero-image');
+                if (heroImage) {
+                    heroImage.classList.add('slide-up');
+                }
+            }, 800);
+        });
+        
+        (function () {
+            try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(e){}
+
+            document.addEventListener('DOMContentLoaded', function () {
+                if (!document.getElementById('top-sentinel')) {
+                    var s = document.createElement('div');
+                    s.id = 'top-sentinel';
+                    s.style.cssText = 'height:1px;margin:0;padding:0;';
+                    document.body.insertBefore(s, document.body.firstChild);
+                }
+            });
+
+            function toTop() {
+                window.scrollTo(0, 0);
+                document.documentElement.scrollTop = 0;
+                document.body.scrollTop = 0;
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                requestAnimationFrame(toTop);
+                setTimeout(toTop, 200);
+            });
+            window.addEventListener('load', function () { setTimeout(toTop, 0); }, { once: true });
+            window.addEventListener('pageshow', function (e) { if (e.persisted) toTop(); });
+        })();
+    </script>
+</body>
+</html>
