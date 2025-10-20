@@ -650,6 +650,7 @@
                 </div>
 
                 <div class="buttons">
+                    <button id="backButton" onclick="previousQuestion()" class="secondary" style="opacity: 0.5; cursor: not-allowed;">Back</button>
                     <button onclick="nextQuestion()" class="primary">Next Question</button>
                 </div>
             </div>
@@ -1008,6 +1009,7 @@
         let selectedAnswer = null;
         let totalPoints = 0;
         let question4AnswerB = false; // Track if user selected "No tutoring" option
+        let answers = {}; // Store answers by question number to prevent double-scoring
         
         function showStep(stepId) {
             const allSteps = document.querySelectorAll('.step');
@@ -1039,6 +1041,7 @@
                         selectedAnswer = null;
                         totalPoints = 0;
                         question4AnswerB = false; // Reset question 4 tracking
+                        answers = {}; // Reset answers
                         document.querySelectorAll('.quiz-question-container').forEach((q, i) => {
                             q.classList.remove('active', 'fading');
                             q.style.display = 'none';
@@ -1047,6 +1050,7 @@
                         firstQuestion.style.display = 'block';
                         setTimeout(() => {
                             firstQuestion.classList.add('active');
+                            updateBackButton(); // Update back button state
                         }, 10);
                         document.querySelectorAll('.quiz-option').forEach(opt => {
                             opt.classList.remove('selected');
@@ -1074,8 +1078,12 @@
                     selectedAnswer = parseFloat(this.getAttribute('data-points'));
                     
                     // Check if this is question 4, option B (no tutoring)
-                    if (questionContainer.id === 'question4' && this.textContent.includes('No, I want to jump right into the drop-in classes')) {
-                        question4AnswerB = true;
+                    if (questionContainer.id === 'question4') {
+                        if (this.textContent.includes('No, I want to jump right into the drop-in classes')) {
+                            question4AnswerB = true;
+                        } else {
+                            question4AnswerB = false;
+                        }
                     }
                 });
             });
@@ -1105,6 +1113,14 @@
                 return;
             }
             
+            // If we already answered this question before, subtract the old answer to prevent double-scoring
+            if (answers[currentQuestion] !== undefined) {
+                totalPoints -= answers[currentQuestion];
+                console.log('Removed previous answer for question ' + currentQuestion + ':', answers[currentQuestion]);
+            }
+            
+            // Store the new answer
+            answers[currentQuestion] = selectedAnswer;
             totalPoints += selectedAnswer;
             console.log('Question ' + currentQuestion + ' - Points awarded:', selectedAnswer);
             console.log('Total points so far:', totalPoints);
@@ -1128,7 +1144,26 @@
                     // Show next question
                     nextQ.classList.add('fading');
                     nextQ.style.display = 'block';
-                    selectedAnswer = null;
+                    
+                    // Restore previously selected answer if going back and forth
+                    selectedAnswer = answers[currentQuestion] || null;
+                    
+                    // Highlight the previously selected option if it exists
+                    const options = nextQ.querySelectorAll('.quiz-option');
+                    options.forEach(opt => {
+                        opt.classList.remove('selected');
+                        if (selectedAnswer !== null && parseFloat(opt.getAttribute('data-points')) === selectedAnswer) {
+                            opt.classList.add('selected');
+                            
+                            // Re-check question 4 answer B when restoring
+                            if (nextQ.id === 'question4' && opt.textContent.includes('No, I want to jump right into the drop-in classes')) {
+                                question4AnswerB = true;
+                            }
+                        }
+                    });
+                    
+                    // Update back button state
+                    updateBackButton();
                     
                     // Trigger fade in
                     setTimeout(() => {
@@ -1145,6 +1180,71 @@
                     showResults();
                 }
             }, 500); // Wait for fade out to complete
+        }
+        
+        function previousQuestion() {
+            if (currentQuestion <= 1) return; // Can't go back from first question
+            
+            const currentQ = document.getElementById('question' + currentQuestion);
+            
+            // Fade out current question
+            currentQ.classList.remove('active');
+            
+            setTimeout(() => {
+                // Hide ALL questions first
+                document.querySelectorAll('.quiz-question-container').forEach(q => {
+                    q.classList.remove('active', 'fading');
+                    q.style.display = 'none';
+                });
+                
+                currentQuestion--;
+                
+                const prevQ = document.getElementById('question' + currentQuestion);
+                prevQ.classList.add('fading');
+                prevQ.style.display = 'block';
+                
+                // Restore the previously selected answer
+                selectedAnswer = answers[currentQuestion] || null;
+                
+                // Highlight the previously selected option
+                const options = prevQ.querySelectorAll('.quiz-option');
+                options.forEach(opt => {
+                    opt.classList.remove('selected');
+                    if (selectedAnswer !== null && parseFloat(opt.getAttribute('data-points')) === selectedAnswer) {
+                        opt.classList.add('selected');
+                        
+                        // Re-check question 4 answer B when restoring
+                        if (prevQ.id === 'question4' && opt.textContent.includes('No, I want to jump right into the drop-in classes')) {
+                            question4AnswerB = true;
+                        }
+                    }
+                });
+                
+                // Update back button state
+                updateBackButton();
+                
+                setTimeout(() => {
+                    prevQ.classList.add('active');
+                    prevQ.classList.remove('fading');
+                }, 10);
+                
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 0);
+            }, 500);
+        }
+        
+        function updateBackButton() {
+            const backButton = document.getElementById('backButton');
+            if (currentQuestion <= 1) {
+                backButton.style.opacity = '0.5';
+                backButton.style.cursor = 'not-allowed';
+            } else {
+                backButton.style.opacity = '1';
+                backButton.style.cursor = 'pointer';
+            }
         }
         
         function showResults() {
