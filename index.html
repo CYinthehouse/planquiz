@@ -479,6 +479,10 @@
             .pricing-card ul li {
                 font-size: 0.7rem;
             }
+            
+            #tutoringPricingPage .pricing-container {
+                grid-template-columns: 1fr !important;
+            }
         }
         
         @media (min-width: 769px) and (max-width: 1200px) {
@@ -573,10 +577,13 @@
                     </div>
                     
                     <div class="quiz-question">
-                        Do you want 6 weeks of extra tutoring sessions to start you off on the right foot and show you around our Academy? *(Addon Purchase)*
+                        Do you want 6 weeks of extra Accent Erasing tutoring sessions to start you off on the right foot and show you around our Academy? *(Addon Purchase)*
                     </div>
                     <div class="quiz-subtext">
                         Optional, but many students prefer 6 weeks of orientation tutoring sessions to show them the fundamentals, how to study, and how to use our Academy to the fullest.
+                    </div>
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <a onclick="showTutoringPricing()" style="color: #31afed; text-decoration: underline; cursor: pointer; font-size: clamp(0.75rem, 2vw, 0.95rem); font-weight: bold;">Click here for pricing info!</a>
                     </div>
                     <div class="quiz-options">
                         <div class="quiz-option" data-points="2.25"><strong>A.</strong>Yes, I'd love extra tutoring, so I don't feel lost.</div>
@@ -664,6 +671,46 @@
             </div>
         </div>
 
+        <!-- Six Week Tutoring Pricing Page -->
+        <div id="tutoringPricingPage" class="step">
+            <h1>📚 Six Week Tutoring:<br>Accent Eraser Program</h1>
+            
+            <div class="pricing-container" style="grid-template-columns: repeat(2, 1fr); max-width: 1000px;">
+                <div class="pricing-card">
+                    <h3>Standalone Package</h3>
+                    <ul style="margin-bottom: 1.5rem;">
+                        <li>Purchase the 6 Week Tutoring on its own.</li>
+                        <li>No access to other classes, textbook, or community.</li>
+                        <li>For students who have limited time or want to try out a class.</li>
+                    </ul>
+                    <div class="price" style="font-size: clamp(0.9rem, 2.2vw, 1.2rem); margin-bottom: 1rem;">
+                        PRICE: $150<br>
+                        <span style="font-size: clamp(0.65rem, 1.8vw, 0.85rem); font-weight: normal;">one-time purchase</span>
+                    </div>
+                    <button onclick="showPurchasePopup()" class="primary" style="width: 100%; margin: 0;">Purchase Now</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <h3>Add-On Package</h3>
+                    <p style="color: #00FF00; text-align: center; font-size: clamp(0.7rem, 2vw, 0.9rem); margin-bottom: 1rem; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000; font-weight: bold;">70% DISCOUNT!</p>
+                    <ul style="margin-bottom: 1.5rem;">
+                        <li>Get 6 Week Tutoring at a 70% DISCOUNT when you purchase any of our monthly programs.</li>
+                        <li>Get access to all other classes, textbook, and community.</li>
+                        <li>For dedicated students who want to commit to studying.</li>
+                    </ul>
+                    <div class="price" style="font-size: clamp(0.9rem, 2.2vw, 1.2rem); margin-bottom: 1rem;">
+                        PRICE: $45<br>
+                        <span style="font-size: clamp(0.65rem, 1.8vw, 0.85rem); font-weight: normal;">add-on at checkout</span>
+                    </div>
+                    <button onclick="returnToQuiz()" class="class-button" style="width: 100%; margin: 0; font-size: clamp(0.7rem, 2vw, 0.9rem); padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 24px);">Continue with the Quiz to Pick a Monthly Plan</button>
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button onclick="returnToQuiz()" class="secondary">Back to Quiz</button>
+            </div>
+        </div>
+
         <!-- Flex Plan Result Page -->
         <div id="flexResultPage" class="step">
             <h1>🎉 Your Perfect Plan!</h1>
@@ -686,6 +733,10 @@
                     PRICE: $75/MONTH
                     <span class="price-breakdown-link" onclick="showPriceBreakdown('flex')">*Click to see the price breakdown</span>
                 </div>
+                
+                <a href="https://koreanlearnin.com/products/1-year-conversational-masterplan-2-week-free-trial?_pos=1&_psq=flex&_ss=e&_v=1.0&selling_plan=9562882338&variant=50421776777506" target="_blank" style="text-decoration: none;">
+                    <button class="primary" style="width: 100%; margin: 1rem 0;">CHECKOUT</button>
+                </a>
                 
                 <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
                     <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
@@ -739,6 +790,10 @@
                     PRICE: $89/MONTH
                     <span class="price-breakdown-link" onclick="showPriceBreakdown('performance')">*Click to see the price breakdown</span>
                 </div>
+                
+                <a href="https://koreanlearnin.com/products/performance-plan-1-year-conversational-masterplan-2-week-free-trial?_pos=1&_psq=perform&_ss=e&_v=1.0&selling_plan=9562882338&variant=50444245598498" target="_blank" style="text-decoration: none;">
+                    <button class="primary" style="width: 100%; margin: 1rem 0;">CHECKOUT</button>
+                </a>
                 
                 <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
                     <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
@@ -804,6 +859,10 @@
                     PRICE: $275/MONTH
                     <span class="price-breakdown-link" onclick="showPriceBreakdown('performanceplus')">*Click to see the price breakdown</span>
                 </div>
+                
+                <a href="https://koreanlearnin.com/products/performance-plus-plan-9-month-conversational-masterplan-2-week-free-trial?_pos=2&_psq=perfor&_ss=e&_v=1.0&selling_plan=9562882338&variant=50444250087714" target="_blank" style="text-decoration: none;">
+                    <button class="primary" style="width: 100%; margin: 1rem 0;">CHECKOUT</button>
+                </a>
                 
                 <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
                     <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
@@ -874,6 +933,10 @@
                     <span class="price-breakdown-link" onclick="showPriceBreakdown('premium')">*Click to see the price breakdown</span>
                 </div>
                 
+                <a href="https://koreanlearnin.com/products/1-on-1-mentorship-with-mr-calvin-weekly-check-in?_pos=1&_psq=premi&_ss=e&_v=1.0&selling_plan=9562882338&variant=50422195552546" target="_blank" style="text-decoration: none;">
+                    <button class="primary" style="width: 100%; margin: 1rem 0;">CHECKOUT</button>
+                </a>
+                
                 <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
                     <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
                         Want to see all of our programs? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a> to view our other plans.
@@ -904,6 +967,9 @@
                         PRICE: $75/MONTH
                         <span class="price-breakdown-link" onclick="showPriceBreakdown('flex')">*Click to see the price breakdown</span>
                     </div>
+                    <a href="https://koreanlearnin.com/products/1-year-conversational-masterplan-2-week-free-trial?_pos=1&_psq=flex&_ss=e&_v=1.0&selling_plan=9562882338&variant=50421776777506" target="_blank" style="text-decoration: none;">
+                        <button class="primary" style="width: 100%; margin-top: 1rem;">CHECKOUT</button>
+                    </a>
                 </div>
                 
                 <div class="pricing-card">
@@ -922,6 +988,9 @@
                         PRICE: $89/MONTH
                         <span class="price-breakdown-link" onclick="showPriceBreakdown('performance')">*Click to see the price breakdown</span>
                     </div>
+                    <a href="https://koreanlearnin.com/products/performance-plan-1-year-conversational-masterplan-2-week-free-trial?_pos=1&_psq=perform&_ss=e&_v=1.0&selling_plan=9562882338&variant=50444245598498" target="_blank" style="text-decoration: none;">
+                        <button class="primary" style="width: 100%; margin-top: 1rem;">CHECKOUT</button>
+                    </a>
                 </div>
                 
                 <div class="pricing-card">
@@ -937,6 +1006,9 @@
                         PRICE: $275/MONTH
                         <span class="price-breakdown-link" onclick="showPriceBreakdown('performanceplus')">*Click to see the price breakdown</span>
                     </div>
+                    <a href="https://koreanlearnin.com/products/performance-plus-plan-9-month-conversational-masterplan-2-week-free-trial?_pos=2&_psq=perfor&_ss=e&_v=1.0&selling_plan=9562882338&variant=50444250087714" target="_blank" style="text-decoration: none;">
+                        <button class="primary" style="width: 100%; margin-top: 1rem;">CHECKOUT</button>
+                    </a>
                 </div>
                 
                 <div class="pricing-card">
@@ -951,6 +1023,9 @@
                         PRICE: $549/MONTH
                         <span class="price-breakdown-link" onclick="showPriceBreakdown('premium')">*Click to see the price breakdown</span>
                     </div>
+                    <a href="https://koreanlearnin.com/products/1-on-1-mentorship-with-mr-calvin-weekly-check-in?_pos=1&_psq=premi&_ss=e&_v=1.0&selling_plan=9562882338&variant=50422195552546" target="_blank" style="text-decoration: none;">
+                        <button class="primary" style="width: 100%; margin-top: 1rem;">CHECKOUT</button>
+                    </a>
                 </div>
             </div>
             
@@ -989,6 +1064,20 @@
             <button class="popup-close" onclick="closeErrorPopup()">×</button>
             <h2 style="color: #ff6b6b;">⚠️ Oops!</h2>
             <p style="font-size: clamp(0.8rem, 2vw, 1rem); text-align: center;">Please select an answer before continuing!</p>
+        </div>
+    </div>
+
+    <!-- Purchase Popup -->
+    <div id="purchasePopup" class="popup-overlay" onclick="closePurchasePopup(event)">
+        <div class="popup-content" onclick="event.stopPropagation()" style="max-width: 500px;">
+            <button class="popup-close" onclick="closePurchasePopup()">×</button>
+            <h2 style="color: #31afed;">🛒 Purchase Coming Soon!</h2>
+            <p style="font-size: clamp(0.8rem, 2vw, 1rem); text-align: center; line-height: 1.8;">
+                Thank you for your interest in our Six Week Tutoring: Accent Eraser Program!
+            </p>
+            <p style="font-size: clamp(0.8rem, 2vw, 1rem); text-align: center; line-height: 1.8; margin-top: 1rem;">
+                Purchase functionality will be available soon. Please contact us directly for more information.
+            </p>
         </div>
     </div>
 
@@ -1345,6 +1434,84 @@
         function closePriceBreakdown(event) {
             if (!event || event.target.classList.contains('popup-overlay')) {
                 const popup = document.getElementById('priceBreakdownPopup');
+                popup.classList.remove('active');
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 300);
+            }
+        }
+        
+        function showTutoringPricing() {
+            // Save current state before navigating
+            showStep('tutoringPricingPage');
+        }
+        
+        function returnToQuiz() {
+            // Return to quiz question 4 with all progress preserved
+            const allSteps = document.querySelectorAll('.step');
+            const currentActive = document.querySelector('.step.active');
+            
+            if (currentActive) {
+                currentActive.classList.add('fade-out');
+            }
+            
+            setTimeout(() => {
+                allSteps.forEach(step => {
+                    step.classList.remove('active', 'fade-out');
+                });
+                
+                const quizPage = document.getElementById('quizPage');
+                quizPage.classList.add('active');
+                
+                // Set current question to 4
+                currentQuestion = 4;
+                
+                // Hide all questions
+                document.querySelectorAll('.quiz-question-container').forEach(q => {
+                    q.classList.remove('active', 'fading');
+                    q.style.display = 'none';
+                });
+                
+                // Show question 4
+                const question4 = document.getElementById('question4');
+                question4.style.display = 'block';
+                setTimeout(() => {
+                    question4.classList.add('active');
+                }, 10);
+                
+                // Restore selected answer if it exists
+                selectedAnswer = answers[4] || null;
+                if (answers[4] !== undefined) {
+                    const options = question4.querySelectorAll('.quiz-option');
+                    options.forEach(opt => {
+                        opt.classList.remove('selected');
+                        if (parseFloat(opt.getAttribute('data-points')) === selectedAnswer) {
+                            opt.classList.add('selected');
+                        }
+                    });
+                }
+                
+                updateBackButton();
+                
+                setTimeout(() => {
+                    window.scrollTo(0, 0);
+                    document.documentElement.scrollTop = 0;
+                    document.body.scrollTop = 0;
+                }, 0);
+            }, currentActive ? 300 : 0);
+        }
+        
+        function showPurchasePopup() {
+            const popup = document.getElementById('purchasePopup');
+            popup.style.display = 'flex';
+            setTimeout(() => {
+                popup.classList.add('active');
+            }, 10);
+        }
+        
+        function closePurchasePopup(event) {
+            if (!event || event.target.classList.contains('popup-overlay') || event.target.classList.contains('popup-close')) {
+                const popup = document.getElementById('purchasePopup');
                 popup.classList.remove('active');
                 setTimeout(() => {
                     popup.style.display = 'none';
