@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>KoreanLearnin</title>
     <script type="text/javascript"> (function(c,l,a,r,i,t,y){ c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)}; t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i; y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y); })(window, document, "clarity", "script", "tt08azyz1t"); </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
         
         /* --- Fix A: stop top-margin collapse on the very first child --- */
-        html, body { 
+        html, body {
             margin: 0; 
             padding: 0;
             height: auto;
@@ -447,6 +450,145 @@
         .pricing-card .price {
             line-height: 1.85;
         }
+
+        /* Blackboard Widget Styles */
+        .blackboard-widget {
+            max-width: 1035px;
+            margin: 30px auto;
+            padding: 20px 30px;
+            background: linear-gradient(145deg, #1a1a1a, #2d2d2d);
+            border: 15px solid #8B4513;
+            border-radius: 10px;
+            box-shadow: 
+                inset 0 0 20px rgba(0,0,0,0.8),
+                0 5px 15px rgba(0,0,0,0.5);
+            font-family: 'Press Start 2P', cursive;
+            min-height: 150px;
+        }
+
+        .bb-header {
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(255,255,255,0.3);
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .bb-underline {
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255,255,255,0.6) 20%, 
+                rgba(255,255,255,0.8) 50%, 
+                rgba(255,255,255,0.6) 80%, 
+                transparent 100%);
+            margin: 10px auto 15px;
+            width: 80%;
+        }
+
+        .class-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 15px;
+        }
+
+        .class-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            gap: 12px;
+        }
+
+        .class-name {
+            color: #87CEEB;
+            font-size: clamp(0.5rem, 1.5vw, 0.7rem);
+            text-shadow: 1px 1px 3px rgba(135,206,235,0.4);
+            line-height: 1.3;
+            flex-shrink: 0;
+        }
+
+        .seats-info {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .seats-count {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            font-weight: bold;
+        }
+
+        .seats-label {
+            color: #ffd700;
+            font-size: clamp(0.45rem, 1.2vw, 0.6rem);
+            text-transform: uppercase;
+        }
+
+        /* Green for 4+ seats */
+        .seats-high { 
+            color: #00ff00;
+            text-shadow: 0 0 20px rgba(0,255,0,0.5);
+        }
+        
+        /* Yellow blinking for 2-3 seats */
+        .seats-medium { 
+            color: #ffff00;
+            text-shadow: 0 0 20px rgba(255,255,0,0.5);
+            animation: blink 1.2s ease-in-out infinite;
+        }
+        
+        /* Red FAST blinking for 1 seat */
+        .seats-urgent { 
+            color: #ff4444;
+            text-shadow: 0 0 30px rgba(255,68,68,0.8);
+            animation: urgent-blink 0.5s ease-in-out infinite;
+        }
+        
+        /* Solid red for sold out */
+        .seats-out { 
+            color: #ff4444;
+            text-shadow: 0 0 30px rgba(255,68,68,0.8);
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes urgent-blink {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1.1);
+                text-shadow: 0 0 40px rgba(255,68,68,1);
+            }
+            50% { 
+                opacity: 0.2;
+                transform: scale(1);
+                text-shadow: 0 0 20px rgba(255,68,68,0.5);
+            }
+        }
+
+        .loading {
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            font-size: clamp(0.6rem, 1.8vw, 0.85rem);
+        }
+
+        .status-text {
+            font-size: clamp(0.4rem, 1.1vw, 0.55rem);
+            color: rgba(255,255,255,0.5);
+            margin-left: 5px;
+            font-style: normal;
+        }
         
         @media (max-width: 768px) {
             .hero-image img {
@@ -483,10 +625,46 @@
             #tutoringPricingPage .pricing-container {
                 grid-template-columns: 1fr !important;
             }
+
+            .blackboard-widget {
+                max-width: 95%;
+                padding: 15px 20px;
+                margin: 20px auto;
+                min-height: 120px;
+            }
+
+            .class-list {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .bb-header {
+                font-size: clamp(0.7rem, 2vw, 0.9rem);
+            }
+
+            .class-name {
+                font-size: clamp(0.45rem, 1.3vw, 0.6rem);
+            }
+
+            .seats-count {
+                font-size: clamp(1rem, 3vw, 1.4rem);
+            }
+
+            .seats-label {
+                font-size: clamp(0.4rem, 1vw, 0.5rem);
+            }
+
+            .status-text {
+                font-size: clamp(0.4rem, 1vw, 0.5rem);
+            }
         }
         
         @media (min-width: 769px) and (max-width: 1200px) {
             .pricing-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .class-list {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
@@ -706,6 +884,15 @@
                         <span style="font-size: clamp(0.65rem, 1.8vw, 0.85rem); font-weight: normal;">add-on at checkout</span>
                     </div>
                     <button onclick="returnToQuiz()" class="class-button" style="width: 100%; margin: 0; font-size: clamp(0.7rem, 2vw, 0.9rem); padding: clamp(12px, 3vw, 16px) clamp(16px, 4vw, 24px);">Continue with the Quiz to Pick a Monthly Plan</button>
+                </div>
+            </div>
+            
+            <!-- Seat Availability Widget -->
+            <div class="blackboard-widget">
+                <div class="bb-header">Class Seats Available</div>
+                <div class="bb-underline"></div>
+                <div id="class-list" class="class-list">
+                    <div class="loading">Loading...</div>
                 </div>
             </div>
             
@@ -1085,11 +1272,74 @@
     </div>
 
     <script>
+        // Configuration for seat availability
+        const API_URL = 'https://us-central1-koreanlearnin-api.cloudfunctions.net/getClassAvailability';
+        const UPDATE_INTERVAL = 30000; // Update every 30 seconds
+
+        // Seat Availability Functions
+        async function fetchClassData() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                if (data.success) {
+                    displayClasses(data.classes);
+                } else {
+                    showError();
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                showError();
+            }
+        }
+
+        function getSeatsColor(seats) {
+            if (seats === 0) return 'seats-out';       // No seats - solid red
+            if (seats === 1) return 'seats-urgent';    // 1 seat - FAST blinking red
+            if (seats <= 3) return 'seats-medium';     // 2-3 seats - blinking yellow
+            return 'seats-high';                       // 4+ seats - green
+        }
+
+        function getStatusText(seats) {
+            if (seats === 0) return '(SOLD OUT)';
+            if (seats === 1) return '(LAST SEAT!)';
+            if (seats <= 3) return '(HURRY!)';
+            return '';
+        }
+
+        function displayClasses(classes) {
+            const container = document.getElementById('class-list');
+            
+            let html = '';
+            classes.forEach(cls => {
+                const colorClass = getSeatsColor(cls.seats);
+                const statusText = getStatusText(cls.seats);
+                html += `
+                    <div class="class-item">
+                        <div class="class-name">${cls.name}</div>
+                        <div class="seats-info">
+                            <span class="seats-count ${colorClass}">${cls.seats}</span>
+                            <span class="seats-label">SEATS</span>
+                            ${statusText ? `<span class="status-text">${statusText}</span>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function showError() {
+            document.getElementById('class-list').innerHTML = 
+                '<div class="loading">Unable to load class data</div>';
+        }
+
+        // Quiz Variables
         let currentQuestion = 1;
         let selectedAnswer = null;
         let totalPoints = 0;
-        let question4AnswerB = false; // Track if user selected "No tutoring" option
-        let answers = {}; // Store answers by question number to prevent double-scoring
+        let question4AnswerB = false;
+        let answers = {};
         
         function showStep(stepId) {
             const allSteps = document.querySelectorAll('.step');
@@ -1120,8 +1370,8 @@
                         currentQuestion = 1;
                         selectedAnswer = null;
                         totalPoints = 0;
-                        question4AnswerB = false; // Reset question 4 tracking
-                        answers = {}; // Reset answers
+                        question4AnswerB = false;
+                        answers = {};
                         document.querySelectorAll('.quiz-question-container').forEach((q, i) => {
                             q.classList.remove('active', 'fading');
                             q.style.display = 'none';
@@ -1130,11 +1380,16 @@
                         firstQuestion.style.display = 'block';
                         setTimeout(() => {
                             firstQuestion.classList.add('active');
-                            updateBackButton(); // Update back button state
+                            updateBackButton();
                         }, 10);
                         document.querySelectorAll('.quiz-option').forEach(opt => {
                             opt.classList.remove('selected');
                         });
+                    }
+
+                    // Load seat availability when showing tutoring pricing page
+                    if (stepId === 'tutoringPricingPage') {
+                        fetchClassData();
                     }
                     
                     setTimeout(() => {
@@ -1146,7 +1401,6 @@
             }, currentActive ? 300 : 0);
         }
         
-        // Add click handlers to all quiz options
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.quiz-option').forEach(option => {
                 option.addEventListener('click', function() {
@@ -1157,7 +1411,6 @@
                     this.classList.add('selected');
                     selectedAnswer = parseFloat(this.getAttribute('data-points'));
                     
-                    // Check if this is question 4, option B (no tutoring)
                     if (questionContainer.id === 'question4') {
                         if (this.textContent.includes('No, I want to jump right into the drop-in classes')) {
                             question4AnswerB = true;
@@ -1167,6 +1420,9 @@
                     }
                 });
             });
+
+            // Start seat availability auto-refresh
+            setInterval(fetchClassData, UPDATE_INTERVAL);
         });
         
         function showErrorPopup() {
@@ -1193,13 +1449,11 @@
                 return;
             }
             
-            // If we already answered this question before, subtract the old answer to prevent double-scoring
             if (answers[currentQuestion] !== undefined) {
                 totalPoints -= answers[currentQuestion];
                 console.log('Removed previous answer for question ' + currentQuestion + ':', answers[currentQuestion]);
             }
             
-            // Store the new answer
             answers[currentQuestion] = selectedAnswer;
             totalPoints += selectedAnswer;
             console.log('Question ' + currentQuestion + ' - Points awarded:', selectedAnswer);
@@ -1207,11 +1461,9 @@
             
             const currentQ = document.getElementById('question' + currentQuestion);
             
-            // Fade out current question
             currentQ.classList.remove('active');
             
             setTimeout(() => {
-                // Hide ALL questions first to prevent multiple showing
                 document.querySelectorAll('.quiz-question-container').forEach(q => {
                     q.classList.remove('active', 'fading');
                     q.style.display = 'none';
@@ -1221,31 +1473,25 @@
                 
                 const nextQ = document.getElementById('question' + currentQuestion);
                 if (nextQ) {
-                    // Show next question
                     nextQ.classList.add('fading');
                     nextQ.style.display = 'block';
                     
-                    // Restore previously selected answer if going back and forth
                     selectedAnswer = answers[currentQuestion] || null;
                     
-                    // Highlight the previously selected option if it exists
                     const options = nextQ.querySelectorAll('.quiz-option');
                     options.forEach(opt => {
                         opt.classList.remove('selected');
                         if (selectedAnswer !== null && parseFloat(opt.getAttribute('data-points')) === selectedAnswer) {
                             opt.classList.add('selected');
                             
-                            // Re-check question 4 answer B when restoring
                             if (nextQ.id === 'question4' && opt.textContent.includes('No, I want to jump right into the drop-in classes')) {
                                 question4AnswerB = true;
                             }
                         }
                     });
                     
-                    // Update back button state
                     updateBackButton();
                     
-                    // Trigger fade in
                     setTimeout(() => {
                         nextQ.classList.add('active');
                         nextQ.classList.remove('fading');
@@ -1259,19 +1505,17 @@
                 } else {
                     showResults();
                 }
-            }, 500); // Wait for fade out to complete
+            }, 500);
         }
         
         function previousQuestion() {
-            if (currentQuestion <= 1) return; // Can't go back from first question
+            if (currentQuestion <= 1) return;
             
             const currentQ = document.getElementById('question' + currentQuestion);
             
-            // Fade out current question
             currentQ.classList.remove('active');
             
             setTimeout(() => {
-                // Hide ALL questions first
                 document.querySelectorAll('.quiz-question-container').forEach(q => {
                     q.classList.remove('active', 'fading');
                     q.style.display = 'none';
@@ -1283,24 +1527,20 @@
                 prevQ.classList.add('fading');
                 prevQ.style.display = 'block';
                 
-                // Restore the previously selected answer
                 selectedAnswer = answers[currentQuestion] || null;
                 
-                // Highlight the previously selected option
                 const options = prevQ.querySelectorAll('.quiz-option');
                 options.forEach(opt => {
                     opt.classList.remove('selected');
                     if (selectedAnswer !== null && parseFloat(opt.getAttribute('data-points')) === selectedAnswer) {
                         opt.classList.add('selected');
                         
-                        // Re-check question 4 answer B when restoring
                         if (prevQ.id === 'question4' && opt.textContent.includes('No, I want to jump right into the drop-in classes')) {
                             question4AnswerB = true;
                         }
                     }
                 });
                 
-                // Update back button state
                 updateBackButton();
                 
                 setTimeout(() => {
@@ -1333,7 +1573,6 @@
             
             let resultPageId = '';
             
-            // If user selected "No tutoring" on question 4, always give Flex plan
             if (question4AnswerB) {
                 resultPageId = 'flexResultPage';
                 console.log('Overriding to Flex due to Question 4 Answer B');
@@ -1445,12 +1684,10 @@
         }
         
         function showTutoringPricing() {
-            // Save current state before navigating
             showStep('tutoringPricingPage');
         }
         
         function returnToQuiz() {
-            // Return to quiz question 4 with all progress preserved
             const allSteps = document.querySelectorAll('.step');
             const currentActive = document.querySelector('.step.active');
             
@@ -1466,23 +1703,19 @@
                 const quizPage = document.getElementById('quizPage');
                 quizPage.classList.add('active');
                 
-                // Set current question to 4
                 currentQuestion = 4;
                 
-                // Hide all questions
                 document.querySelectorAll('.quiz-question-container').forEach(q => {
                     q.classList.remove('active', 'fading');
                     q.style.display = 'none';
                 });
                 
-                // Show question 4
                 const question4 = document.getElementById('question4');
                 question4.style.display = 'block';
                 setTimeout(() => {
                     question4.classList.add('active');
                 }, 10);
                 
-                // Restore selected answer if it exists
                 selectedAnswer = answers[4] || null;
                 if (answers[4] !== undefined) {
                     const options = question4.querySelectorAll('.quiz-option');
