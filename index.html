@@ -657,6 +657,13 @@
             .status-text {
                 font-size: clamp(0.4rem, 1vw, 0.5rem);
             }
+            
+            /* Testimonials - single column on mobile */
+            .testimonials-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+                padding: 0 0.5rem !important;
+            }
         }
         
         @media (min-width: 769px) and (max-width: 1200px) {
@@ -667,12 +674,27 @@
             .class-list {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            /* Testimonials - 2 columns on tablet */
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
         }
         
         @media screen and (max-width: 435px) {
             button {
                 transform: scale(0.9);
                 transform-origin: center;
+            }
+            
+            /* Ensure testimonials stay single column on small phones */
+            .testimonials-grid {
+                grid-template-columns: 1fr !important;
+                min-width: 0 !important;
+            }
+            
+            .testimonials-grid > div {
+                min-width: 0 !important;
             }
         }
     </style>
@@ -687,12 +709,80 @@
             </p>
             <div class="buttons">
                 <button onclick="showStep('quizPage')" class="primary">Which Class is Best for YOU?</button>
-                <a href="https://www.canva.com/design/DAGpglH5L3o/IiT-NOL9GVoZt8ZXJn5RNA/view?utm_content=DAGpglH5L3o&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hbbcafad096#1" target="_blank" style="text-decoration: none;">
-                    <button class="testimonials-button" style="background: linear-gradient(45deg, #2ecc71, #27ae60); box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);">📝 View Student Testimonials</button>
-                </a>
+                <button onclick="showStep('testimonialsPage')" class="testimonials-button" style="background: linear-gradient(45deg, #2ecc71, #27ae60); box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);">📝 View Student Testimonials</button>
             </div>
             <div class="hero-image">
                 <img src="https://cdn.shopify.com/s/files/1/0674/6747/7282/files/KOREANLEARNIN.png?v=1754436909" alt="Korean Learning" />
+            </div>
+        </div>
+
+        <!-- Testimonials Page -->
+        <div id="testimonialsPage" class="step">
+            <h1>📝 Student Testimonials</h1>
+            <p class="description">Hear from our amazing students about their learning journey!</p>
+            
+            <div style="max-width: 1000px; margin: 2rem auto; width: 100%;">
+                <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; padding: 0 1rem;">
+                    
+                    <!-- Vanessa -->
+                    <div style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 15px; padding: 1.5rem; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                        <h3 style="font-size: clamp(0.9rem, 2.2vw, 1.15rem); color: #ffd700; margin-bottom: 1rem; text-align: center; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;">Vanessa</h3>
+                        <video controls style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                            <source src="https://cdn.shopify.com/videos/c/o/v/7b088a184ec04ce88fb3bea2936efce5.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <!-- Donna -->
+                    <div style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 15px; padding: 1.5rem; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                        <h3 style="font-size: clamp(0.9rem, 2.2vw, 1.15rem); color: #ffd700; margin-bottom: 1rem; text-align: center; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;">Donna</h3>
+                        <video controls style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                            <source src="https://cdn.shopify.com/videos/c/o/v/11615058012d40edbfae2841f536cb54.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <!-- Ellie -->
+                    <div style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 15px; padding: 1.5rem; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                        <h3 style="font-size: clamp(0.9rem, 2.2vw, 1.15rem); color: #ffd700; margin-bottom: 1rem; text-align: center; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;">Ellie</h3>
+                        <video controls style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                            <source src="https://cdn.shopify.com/videos/c/o/v/e8650ffbda9a42b1949228486c29c689.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <!-- Ari -->
+                    <div style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 15px; padding: 1.5rem; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                        <h3 style="font-size: clamp(0.9rem, 2.2vw, 1.15rem); color: #ffd700; margin-bottom: 1rem; text-align: center; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;">Ari</h3>
+                        <video controls style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                            <source src="https://cdn.shopify.com/videos/c/o/v/c2f277f406a64530b4ad93891735b5ee.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <!-- Hayley -->
+                    <div style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 15px; padding: 1.5rem; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                        <h3 style="font-size: clamp(0.9rem, 2.2vw, 1.15rem); color: #ffd700; margin-bottom: 1rem; text-align: center; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;">Hayley</h3>
+                        <video controls style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                            <source src="https://cdn.shopify.com/videos/c/o/v/2be6107f06664065b261f3db683c373f.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <!-- Bryan -->
+                    <div style="background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 15px; padding: 1.5rem; backdrop-filter: blur(5px); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);">
+                        <h3 style="font-size: clamp(0.9rem, 2.2vw, 1.15rem); color: #ffd700; margin-bottom: 1rem; text-align: center; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;">Bryan</h3>
+                        <video controls style="width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);">
+                            <source src="https://cdn.shopify.com/videos/c/o/v/39821e188f5a441784a30da1e5d6e70e.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="buttons">
+                <button onclick="showStep('welcomePage')" class="secondary">Back to Main Menu</button>
             </div>
         </div>
 
@@ -918,24 +1008,19 @@
                             Classes are unlocked by leveling up in your textbook
                         </li>
                     </ul>
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-top: 2rem; text-align: center; color: #31afed;">
+                        Looking for a more serious program? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer; font-weight: bold;">HERE</a> to view our other plans.
+                    </p>
                 </div>
                 <div class="price" style="margin: 2rem 0;">
                     PRICE: $75/MONTH
                     <span class="price-breakdown-link" onclick="showPriceBreakdown('flex')">*Click to see the price breakdown</span>
+                    <span style="display: block; font-size: clamp(0.65rem, 1.8vw, 0.85rem); margin-top: 0.5rem; font-weight: normal; color: #FFFFFF;">Too expensive? We offer textbook rentals for $27/month. Please contact us for more information.</span>
                 </div>
                 
                 <a href="https://koreanlearnin.com/products/1-year-conversational-masterplan-2-week-free-trial?_pos=1&_psq=flex&_ss=e&_v=1.0&selling_plan=9562882338&variant=50421776777506" target="_blank" style="text-decoration: none;">
                     <button class="primary" style="width: 100%; margin: 1rem 0;">CHECKOUT</button>
                 </a>
-                
-                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
-                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
-                        Looking for a more serious program? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a> to view our other plans.
-                    </p>
-                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; opacity: 0.9;">
-                        Too expensive? We offer textbook rentals for $27/month. Please contact us for more information.
-                    </p>
-                </div>
             </div>
             <div class="buttons">
                 <button onclick="showStep('welcomePage')" class="secondary">Start Over</button>
@@ -975,24 +1060,19 @@
                             Access to our Study Pods (Group of 2-4 Study Buddies)
                         </li>
                     </ul>
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-top: 2rem; text-align: center; color: #31afed;">
+                        Looking for a more serious program? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer; font-weight: bold;">HERE</a> to view our other plans.
+                    </p>
                 </div>
                 <div class="price" style="margin: 2rem 0;">
                     PRICE: $89/MONTH
                     <span class="price-breakdown-link" onclick="showPriceBreakdown('performance')">*Click to see the price breakdown</span>
+                    <span style="display: block; font-size: clamp(0.65rem, 1.8vw, 0.85rem); margin-top: 0.5rem; font-weight: normal; color: #FFFFFF;">Too expensive? Check out our Flex plan <a onclick="showStep('flexResultPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a>.</span>
                 </div>
                 
                 <a href="https://koreanlearnin.com/products/performance-plan-1-year-conversational-masterplan-2-week-free-trial?_pos=1&_psq=perform&_ss=e&_v=1.0&selling_plan=9562882338&variant=50444245598498" target="_blank" style="text-decoration: none;">
                     <button class="primary" style="width: 100%; margin: 1rem 0;">CHECKOUT</button>
                 </a>
-                
-                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
-                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
-                        Looking for a more serious program? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a> to view our other plans.
-                    </p>
-                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; opacity: 0.9;">
-                        Too expensive? Check out our Flex plan <a onclick="showStep('flexResultPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a>.
-                    </p>
-                </div>
             </div>
             <div class="buttons">
                 <button onclick="showStep('welcomePage')" class="secondary">Start Over</button>
@@ -1044,24 +1124,19 @@
                             Achieve your Korean goals approximately 3x faster!
                         </li>
                     </ul>
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-top: 2rem; text-align: center; color: #31afed;">
+                        Looking for a more serious program? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer; font-weight: bold;">HERE</a> to view our other plans.
+                    </p>
                 </div>
                 <div class="price" style="margin: 2rem 0;">
                     PRICE: $275/MONTH
                     <span class="price-breakdown-link" onclick="showPriceBreakdown('performanceplus')">*Click to see the price breakdown</span>
+                    <span style="display: block; font-size: clamp(0.65rem, 1.8vw, 0.85rem); margin-top: 0.5rem; font-weight: normal; color: #FFFFFF;">Too expensive? Check out our Performance plan <a onclick="showStep('performanceResultPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a>.</span>
                 </div>
                 
                 <a href="https://koreanlearnin.com/products/performance-plus-plan-9-month-conversational-masterplan-2-week-free-trial?_pos=2&_psq=perfor&_ss=e&_v=1.0&selling_plan=9562882338&variant=50444250087714" target="_blank" style="text-decoration: none;">
                     <button class="primary" style="width: 100%; margin: 1rem 0;">CHECKOUT</button>
                 </a>
-                
-                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
-                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
-                        Looking for a more serious program? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a> to view our other plans.
-                    </p>
-                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; opacity: 0.9;">
-                        Too expensive? Check out our Performance plan <a onclick="showStep('performanceResultPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a>.
-                    </p>
-                </div>
             </div>
             <div class="buttons">
                 <button onclick="showStep('welcomePage')" class="secondary">Start Over</button>
@@ -1117,24 +1192,19 @@
                             Access to 24/7 Support: Priority Video response to any questions you may have
                         </li>
                     </ul>
+                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-top: 2rem; text-align: center; color: #31afed;">
+                        Want to see all of our programs? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer; font-weight: bold;">HERE</a> to view our other plans.
+                    </p>
                 </div>
                 <div class="price" style="margin: 2rem 0;">
                     PRICE: $2,000/MONTH
                     <span class="price-breakdown-link" onclick="showPriceBreakdown('premium')">*Click to see the price breakdown</span>
+                    <span style="display: block; font-size: clamp(0.65rem, 1.8vw, 0.85rem); margin-top: 0.5rem; font-weight: normal; color: #FFFFFF;">Too expensive? Check out our Performance Plus plan <a onclick="showStep('performancePlusResultPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a>.</span>
                 </div>
                 
                 <a href="https://koreanlearnin.com/products/1-on-1-mentorship-with-mr-calvin-weekly-check-in?_pos=1&_psq=premi&_ss=e&_v=1.0&selling_plan=9562882338&variant=50422195552546" target="_blank" style="text-decoration: none;">
                     <button class="primary" style="width: 100%; margin: 1rem 0;">CHECKOUT</button>
                 </a>
-                
-                <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 255, 255, 0.2);">
-                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; margin-bottom: 1rem;">
-                        Want to see all of our programs? Click <a onclick="showStep('allPlansPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a> to view our other plans.
-                    </p>
-                    <p style="font-size: clamp(0.75rem, 2vw, 0.95rem); line-height: 1.8; opacity: 0.9;">
-                        Too expensive? Check out our Performance Plus plan <a onclick="showStep('performancePlusResultPage')" style="color: #31afed; text-decoration: underline; cursor: pointer;">HERE</a>.
-                    </p>
-                </div>
             </div>
             <div class="buttons">
                 <button onclick="showStep('welcomePage')" class="secondary">Start Over</button>
@@ -1344,6 +1414,11 @@
         function showStep(stepId) {
             const allSteps = document.querySelectorAll('.step');
             const currentActive = document.querySelector('.step.active');
+            
+            // Pause all videos when switching pages
+            document.querySelectorAll('video').forEach(video => {
+                video.pause();
+            });
             
             if (currentActive) {
                 currentActive.classList.add('fade-out');
